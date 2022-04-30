@@ -1,0 +1,30 @@
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  runs-on: ubuntu-latest
+
+  matrix:
+    command:
+      - lint:eslint
+      - lint:prettier
+      - test
+    fast-fail: false
+
+  check:
+    steps:
+
+      - uses: action/checkout@v3
+
+      - uses: action/setup-node@v2
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup
+        with:
+          install: true
+
+      - run: pnpm ${{ matrix.command }}
