@@ -13,7 +13,7 @@ jobs:
           - lint:eslint
           - lint:prettier
           - test
-      fast-fail: false
+      fail-fast: false
 
     steps:
       - uses: action/checkout@v3
