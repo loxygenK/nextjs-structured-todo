@@ -19,12 +19,9 @@ jobs:
 
       - uses: action/checkout@v3
 
-      - uses: action/setup-node@v2
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 16
-
-      - uses: pnpm/action-setup
-        with:
-          install: true
+          version: 6
+          run_install: true
 
       - run: pnpm ${{ matrix.command }}
