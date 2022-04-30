@@ -5,18 +5,17 @@ on:
       - synchronize
 
 jobs:
-  runs-on: ubuntu-latest
-
-  matrix:
-    command:
-      - lint:eslint
-      - lint:prettier
-      - test
-    fast-fail: false
-
   check:
-    steps:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command:
+          - lint:eslint
+          - lint:prettier
+          - test
+      fast-fail: false
 
+    steps:
       - uses: action/checkout@v3
 
       - uses: pnpm/action-setup@v2
